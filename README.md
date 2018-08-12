@@ -22,6 +22,8 @@ The empty space between the last two pipe characters is the place where the Pok�
 
 A sample database can be found here: [database.txt](https://github.com/gotonode/creatures/blob/master/database.txt)
 
+The user can add a Pokémon, view a list of all the Pokémon in the database (with different sorting options), edit the caught-status of the Pokémon, and remove a Pokémon. The database can also be saved and loaded. A custom file can be defined as the source/target for the database.
+
 I chose to use Python's dictionary-based approach because that was new to me. Immediately I wanted to make it more object-based, in that I would've created a new object called Pokémon and then create, store, edit and delete these objects in a list. But this was a good learning experience, and really showed why Python is used in so many science/tech fields.
 
 The double empty spaces before each function ("def") is a Python convention. Same goes for double spaces before the hash symbol ('#') on single-line comments after code. Comments which are on their own line do not begin with any spaces before them.
