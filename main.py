@@ -1,5 +1,6 @@
 import sys  # Needed to gracefully quit the Python app.
 
+__APP_NAME__ = "Pokémon Database"
 __DEFAULT_DATABASE_FILE__ = "database.txt"
 
 # We call these "creatures" because Python doesn't like the 'é' in Pokémon.
@@ -212,14 +213,6 @@ def print_instructions():
     print()
 
 
-def exit_app():
-# This quits the app.
-
-    print("Thanks for browsing the Pokémon database. App terminated.")
-    print()
-    sys.exit()
-
-
 def save_database():
 # Here we ask the user for the database file name, and then save each Pokémon on its own row (entry).
 
@@ -291,41 +284,50 @@ def load_database():
     print()
 
 
+def exit_app():
+# This quits the app.
+
+    print("Thanks for browsing the " + __APP_NAME__ + ". App terminated.")
+    print()
+    sys.exit()
+
+
 def loop_program():
 # The main loop for the program. Will never end, unless explicitly asked to do so.
 
     command = input("Command ('X' for list of commands): ").strip().upper()  # We put it uppercase just in case.
-    if command == "X":
+
+    if command == "X":  # Print instructions for the user.
         print()
         print_instructions()
-    elif command == "L":
+    elif command == "L":  # List all the Pokémon.
         print()
         list_creatures()
-    elif command == "E":
+    elif command == "E":  # Edit a Pokémon's caught-status.
         print()
         edit_creature()
-    elif command == "A":
+    elif command == "A":  # Add a new Pokémon.
         print()
         add_creature()
-    elif command == "R":
+    elif command == "R":  # Remove an existing Pokémon.
         print()
         remove_creature()
-    elif command == "2":
-        print()
-        save_database()
-    elif command == "1":
+    elif command == "1":  # Loads a database.
         print()
         load_database()
-    elif command == "3":
+    elif command == "2":  # Saves the data into a database (new or existing).
+        print()
+        save_database()
+    elif command == "3":  # Quits the app.
         print()
         exit_app()
-    else:
+    else:  # No valid command was entered.
         print("Unknown command. Type 'X' to see the list of available commands.")
         print()
 
 # Here the app starts, after it has been defined in whole.
 
-print("Welcome to the Pokémon Database!")
+print("Welcome to the " + __APP_NAME__ + "!")
 print()
 print_instructions()
 
