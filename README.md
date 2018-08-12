@@ -14,9 +14,9 @@ Each row in the plaintext database file is an entry on its own. An entry is a sp
 
 The data is split with the pipe character ('|') in the text file. Here are a few example rows (entries):
 
-- 1|Bulbasaur|Grass||N
-- 6|Charizard|Fire|Flying|N
-- 25|Pikachu|Eletric||Y
+- `1|Bulbasaur|Grass||N`
+- `6|Charizard|Fire|Flying|N`
+- `25|Pikachu|Eletric||Y`
 
 The empty space between the last two pipe characters is the place where the Pokémon's secondary type would be placed. But in the case of its absence, the number of pipes is still the same. So every row consists of exactly four (4) of these pipe characters.
 
