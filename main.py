@@ -1,5 +1,7 @@
 import sys  # Needed to gracefully quit the Python app.
 
+__DEFAULT_DATABASE_FILE__ = "database.txt"
+
 # We call these "creatures" because Python doesn't like the 'é' in Pokémon.
 creatures = []  # We store all the Pokémon here.
 
@@ -195,10 +197,10 @@ def exit_app():
 def save_database():
 # Here we ask the user for the database file name, and then save each Pokémon on its own row (entry).
 
-    file_name = input("Where to save the database (default 'database.txt'): ").strip()
+    file_name = input("Where to save the database (default '" + __DEFAULT_DATABASE_FILE__ + "'): ").strip()
 
     if len(file_name) == 0:
-        file_name = "database.txt"
+        file_name = __DEFAULT_DATABASE_FILE__
 
     try:
         file = open(file_name, "wt")  # Write, text.
@@ -233,10 +235,10 @@ def save_database():
 def load_database():
 # After the user has given the database file name, we'll loop through all rows and create new Pokémon based on them.
 
-    file_name = input("Which database to load (default 'database.txt'): ").strip()
+    file_name = input("Which database to load (default '" + __DEFAULT_DATABASE_FILE__ + "'): ").strip()
 
     if len(file_name) == 0:
-        file_name = "database.txt"
+        file_name = __DEFAULT_DATABASE_FILE__
 
     try:
         file = open(file_name, "rt")  # Read, text.
