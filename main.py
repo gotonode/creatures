@@ -254,7 +254,7 @@ def save_database():
 
     file.close()
 
-    print("Database written succesfully to '" + file_name + "'.")
+    print("Database written successfully to '" + file_name + "'.")
     print()
 
 
@@ -287,7 +287,7 @@ def load_database():
 
     file.close()
 
-    print("Database loaded succesfully.")
+    print("Database loaded successfully.")
     print()
 
 
