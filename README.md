@@ -1,4 +1,4 @@
-Pokémon Database
+# Pokémon Database
 
 This is the accompanied documentation for the Pokémon Database Python app.
 
@@ -12,9 +12,9 @@ Each row in the plaintext database file is an entry on its own. An entry is a sp
 - Information whether the user has caught this Pokémon (either a 'Y' or a 'N')
 
 The data is split with the pipe character ('|') in the text file. Here are a few example rows (entries):
-1|Bulbasaur|Grass||N
-6|Charizard|Fire|Flying|N
-25|Pikachu|Eletric||Y
+- 1|Bulbasaur|Grass||N
+- 6|Charizard|Fire|Flying|N
+- 25|Pikachu|Eletric||Y
 
 The empty space between the last two pipe characters is the place where the Pokémon's secondary type would be placed. But in the case of its absence, the number of pipes is still the same. So every row consists of exactly four (4) of these pipe characters.
 
@@ -22,7 +22,7 @@ I chose to use Python's dictionary-based approach because that was new to me. Im
 
 The double empty spaces before each function ("def") is a Python convention. Same goes for double spaces before the hash symbol ('#') on single-line comments after code. Comments which are on their own line do not begin with any spaces before them.
 
-Flaws in the system
+## Flaws in the system
 A few flaws have been identified. These could also be called shortcomings.
 
 If the Pokémon's name or type (primary/secondary) contains the pipe character ('|'), then it would break the database and most likely crash the app. So far, no Pokémon have been named this way, and it is unlikely to happen. This is why the pipe character was chosen as the delimiter. But this doesn't prevent the user from adding data that contains it. Manually editing the database file with ignorance can also cause problems.
