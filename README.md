@@ -22,6 +22,16 @@ I chose to use Python's dictionary-based approach because that was new to me. Im
 
 The double empty spaces before each function ("def") is a Python convention. Same goes for double spaces before the hash symbol ('#') on single-line comments after code. Comments which are on their own line do not begin with any spaces before them.
 
+Many functions were created to avoid repetition ("DRY").
+
+Input validation is performed in an infinite loop which exists (break) only when the input is deemed valid. For an example, if a positive integer is needed, it firsts checks if it is an integer in the first place, then compares it to zero (it must be greater than). Only when 1 (or higher than 1) is entered as input does the loop end. Drawback here is that the user has no way of exiting and returning to the main menu, if he/she would like to abort the operation.
+
+When the user wishes to view a list of his/her Pokémon, four sorting choices are available:
+1. Sort by ID
+2. Sort by name
+3. Sort by primary type
+4. Sort by secondary type
+
 ## Flaws in the system
 A few flaws have been identified. These could also be called shortcomings.
 

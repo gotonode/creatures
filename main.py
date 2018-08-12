@@ -129,9 +129,35 @@ def list_creatures():
         print()
         return
 
+    print("Would you like your Pokémon sorted by their ID (1), name (2), primary type (3) or secondary type (4)?")
+
+    while True:
+        choice = input("Please enter your choice (an integer): ")
+        try:
+            choice = int(choice)
+            if choice < 1 or choice > 4:
+                print("Please give a valid choice (1-4).")
+            else:
+                break
+
+        except ValueError:
+            print("That wasn't an integer.")
+
     new_list = []  # This is the new, sorted list.
 
-    new_list = sorted(creatures, key = lambda k: int(k["id"]), reverse=False)
+    if choice == 1:
+        # We sort by ID (an integer).
+        new_list = sorted(creatures, key = lambda k: int(k["id"]), reverse=False)
+    else:
+        # We sort by a string (not an integer).
+        if choice == 2:
+            sort_by = "name"
+        elif choice == 3:
+            sort_by = "type1"
+        else:
+            sort_by = "type2"
+
+        new_list = sorted(creatures, key = lambda k: k[sort_by], reverse=False)
 
     print("Here are your Pokémon: ")
 
