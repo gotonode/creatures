@@ -2,6 +2,18 @@
 
 This is the accompanied documentation for the Pokémon Database Python app.
 
+## Case & functionality
+
+When the app is launched, it presents the user with all available commands. The user chooses a command by typing it in and pressing [RETURN]. The commands are single-character, such as 1 or A. For letters, it doesn't matter if the user types it in lowercase or uppercase, the app changes them all to uppercase.
+
+The user can now choose to add a Pokémon, "Pikachu". Choosing option 'A' to add it, the system asks for the new Pokémon's information. First, the user enters its ID (in this case, 25) and the system verifies that it is a positive integer. After that, the Pokémon's name is given ("Pikachu"), then its main type ("eletric") and a secondary type (this is optional). Finally, the user indicates via a 'Y' or 'N' if he/she has caught that Pokémon (in whatever game this app is used for, be it Pokémon Red/Blue for the GameBoy or Pokémon GO for Android, as an example). This user has not yet caught Pikachu.
+
+To view a list of all the Pokémon in the database, the user can choose from four different ordering options. An existing Pokémon can also be removed. And once a Pokémon has been caught, or returned to the wild, it's caught-status can be changed via the 'E' command. A Pokémon who is to be removed/edited must be indicated by either its ID or name. It doesn't matter if the search term is all in lowercase; this app will find the Pokémon nonetheless.
+
+Once Pokémon have been added/removed/edited, they can be saved via the '1' command. The user can define the path and filename of the database to be used. When restoring data, command '2' is used and again, the path and filename can be specified. In both of these cases, if nothing is defined, the default value of "database.txt" is used.
+
+Finally, the user can exit the app with the '3' command.
+
 ## Database
 
 Pokémon Database uses a simple text file as its database. A file of any extension can be used, and the app suggests a default name of "database.txt" for simplicity.
@@ -30,7 +42,7 @@ I chose to use Python's dictionary-based approach because that was new to me. Im
 
 The double empty spaces before each function ("def") is a Python convention. Same goes for double spaces before the hash symbol ('#') on single-line comments after code. Comments which are on their own line do not begin with any spaces before them.
 
-## Functions
+## Functions (methods)
 
 Many functions were created to avoid repetition ("DRY"). In Python, a function is defined with the "def" keyword. Each function has been commented, and named appropriately. Please refer to the code for more information.
 
