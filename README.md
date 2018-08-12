@@ -14,7 +14,7 @@ Each row in the plaintext database file is an entry on its own. An entry is a sp
 
 The data is split with the pipe character ('|') in the text file. Here are a few example rows (entries):
 
-- `1|Bulbasaur|Grass||N`
+- `1|Bulbasaur|Grass|Poison|N`
 - `6|Charizard|Fire|Flying|N`
 - `25|Pikachu|Eletric||Y`
 

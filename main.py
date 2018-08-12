@@ -237,7 +237,7 @@ def save_database():
         entry = entry + "\n"
 
         # Sample data:
-        # 1|Bulbasaur|Grass||N
+        # 1|Bulbasaur|Grass|Poison|N
         # 6|Charizard|Fire|Flying|N
         # 25|Pikachu|Eletric||Y
         #
