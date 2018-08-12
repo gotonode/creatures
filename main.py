@@ -30,7 +30,7 @@ def add_creature():
     while True:
         name = input("Name: ").strip()
 
-        if len(name) == 0:
+        if not name:
             print("Please enter a name for the Pokémon.")
         else:
             break
@@ -40,7 +40,7 @@ def add_creature():
     while True:
         type1 = input("Main type: ").strip()
 
-        if len(type1) == 0:
+        if not type1:
             print("Please enter a main (primary) type for the Pokémon.")
         else:
             break
@@ -50,20 +50,25 @@ def add_creature():
     type2 = input("Secondary type (leave blank for none): ").strip()
     creature["type2"] = type2
 
-    while True:
-        caught = input("Have you caught this Pokémon [Y/N]? ").strip().upper()
-        if caught == "Y" or caught == "N":
-            break
-        else:
-            print("Please either enter 'Y' for yes or 'N' for no.")
-
-    creature["caught"] = caught
+    creature["caught"] = ask_if_caught()  # Asks for either a 'Y' or a 'N' and returns that.
 
     creatures.append(creature)  # Append the new creature to the list of all creatures.
 
     print("Pokémon has been created and added to the in-memory database.")
     print("Please remember to save your changes.")
     print()
+
+def ask_if_caught():
+# Asks the user if he/she has caught the Pokémon, and returns either a 'Y' or a 'N'.
+# Used when creating a new Pokémon entry and when editing an existing Pokémon.
+
+    while True:
+        caught = input("Have you caught this Pokémon [Y/N]? ").strip().upper()
+        if caught == "Y" or caught == "N":
+            break
+        else:
+            print("Please either enter 'Y' for yes or 'N' for no.")
+    return caught
 
 
 def find_creature():
@@ -93,14 +98,7 @@ def edit_creature():
         print()
         return
 
-    while True:
-        caught = input("Have you caught this Pokémon [Y/N]? ").strip().upper()
-        if caught == "Y" or caught == "N":
-            break
-        else:
-            print("Please either enter 'Y' for yes or 'N' for no.")
-
-    creature["caught"] = caught
+    creature["caught"] = ask_if_caught()  # Returns either a 'Y' or a 'N'.
 
     print("Pokémon has been updated.")
     print()
@@ -125,7 +123,7 @@ def remove_creature():
 def list_creatures():
 # Lists all the Pokémon in the database.
 
-    if len(creatures) == 0:
+    if not creatures:
         print("No Pokémon in the database. Perhaps you'd like to load a database or add a new Pokémon?")
         print()
         return
@@ -164,7 +162,7 @@ def list_creatures():
 
     for creature in new_list:
         type = creature["type1"]
-        if len(creature["type2"]) > 0:
+        if creature["type2"]:
             # If it has two types, they will be displayed nicely.
             type = type + " / " + creature["type2"]
 
@@ -218,7 +216,7 @@ def save_database():
 
     file_name = input("Where to save the database (default '" + __DEFAULT_DATABASE_FILE__ + "'): ").strip()
 
-    if len(file_name) == 0:
+    if not file_name:
         file_name = __DEFAULT_DATABASE_FILE__
 
     try:
@@ -256,7 +254,7 @@ def load_database():
 
     file_name = input("Which database to load (default '" + __DEFAULT_DATABASE_FILE__ + "'): ").strip()
 
-    if len(file_name) == 0:
+    if not file_name:
         file_name = __DEFAULT_DATABASE_FILE__
 
     try:
