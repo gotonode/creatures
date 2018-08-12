@@ -13,11 +13,11 @@ def add_creature():
     creature = {}
 
     while True:
-        id = input("ID: ").strip()
+        creature_id = input("ID: ").strip()  # Shouldn't use "id" in Python, thus this longer name.
 
         # This checks that the given value is an integer.
         try:
-            id_for_check = int(id)
+            id_for_check = int(creature_id)
             if id_for_check <= 0:
                 print("Please give a positive integer.")
             else:
@@ -25,7 +25,7 @@ def add_creature():
         except ValueError:
             print("Please enter an integer.")
 
-    creature["id"] = id
+    creature["id"] = creature_id
 
     while True:
         name = input("Name: ").strip()
@@ -161,17 +161,17 @@ def list_creatures():
     print("Here are your Pokémon: ")
 
     for creature in new_list:
-        type = creature["type1"]
+        type_string = creature["type1"]
         if creature["type2"]:
             # If it has two types, they will be displayed nicely.
-            type = type + " / " + creature["type2"]
+            type_string = type_string + " / " + creature["type2"]
 
         if creature["caught"] == "Y":
             caught = ", caught"
         else:
             caught = ", not caught yet"
 
-        print(creature["id"] + ". " + creature["name"] + " (" + type + ")" + caught)
+        print(creature["id"] + ". " + creature["name"] + " (" + type_string + ")" + caught)
 
     print()
 
@@ -185,11 +185,11 @@ def find_creature_by_name(name):
     return None
 
 
-def find_creature_by_id(id):
+def find_creature_by_id(creature_id):
 # Finds a Pokémon by ID, returns None otherwise.
 
     for creature in creatures:
-        if int(creature["id"]) == id:
+        if int(creature["id"]) == creature_id:
             return creature
     return None
 
