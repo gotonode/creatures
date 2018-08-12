@@ -195,7 +195,7 @@ def exit_app():
 def save_database():
 # Here we ask the user for the database file name, and then save each Pokémon on its own row (entry).
 
-    file_name = input("Where to save the database (default 'database.txt'): ")
+    file_name = input("Where to save the database (default 'database.txt'): ").strip()
 
     if len(file_name) == 0:
         file_name = "database.txt"
@@ -233,7 +233,7 @@ def save_database():
 def load_database():
 # After the user has given the database file name, we'll loop through all rows and create new Pokémon based on them.
 
-    file_name = input("Which database to load (default 'database.txt'): ")
+    file_name = input("Which database to load (default 'database.txt'): ").strip()
 
     if len(file_name) == 0:
         file_name = "database.txt"
