@@ -2,6 +2,8 @@
 
 This is the accompanied documentation for the Pokémon Database Python app.
 
+## Database
+
 Pokémon Database uses a simple text file as its database. A file of any extension can be used, and the app suggests a default name of "database.txt" for simplicity.
 
 Each row in the plaintext database file is an entry on its own. An entry is a specific Pokémon, and contains the following information:
@@ -28,7 +30,27 @@ I chose to use Python's dictionary-based approach because that was new to me. Im
 
 The double empty spaces before each function ("def") is a Python convention. Same goes for double spaces before the hash symbol ('#') on single-line comments after code. Comments which are on their own line do not begin with any spaces before them.
 
-Many functions were created to avoid repetition ("DRY").
+## Functions
+
+Many functions were created to avoid repetition ("DRY"). In Python, a function is defined with the "def" keyword. Each function has been commented, and named appropriately. Please refer to the code for more information.
+
+Here's a list of all the functions and their uses in this app:
+
+- "`add_creature`" creates a new Pokémon and adds it to the list
+- "`ask_if_caught`" is used when creating a new Pokémon and when editing an existing one
+- "`find_creature`" finds a Pokémon by its ID (integer) or name (string)
+- "`edit_creature`" changes the caught-status of the Pokémon
+- "`remove_creature`" removes a single Pokémon, based on its ID or name
+- "`list_creatures`" lists all the Pokémon in the database in one of four different ways
+- "`find_creature_by_name`" is a helper function which does what the name suggests, returns None otherwise
+- "`find_creature_by_id`" is the same as above, but an ID is used instead of name
+- "`print_instructions`" prints to the console all the available commands
+- "`save_database`" saves the in-memory database to a file (which can be defined)
+- "`load_database`" clears the memory and loads Pokémon from a database file
+- "`exit_app`" is used to exit the app
+- "`loop_program`" loops the program indefinitely, until asked to exit
+
+## Technical
 
 Input validation is performed in an infinite loop which exists (break) only when the input is deemed valid. For an example, if a positive integer is needed, it firsts checks if it is an integer in the first place, then compares it to zero (it must be greater than). Only when 1 (or higher than 1) is entered as input does the loop end. Drawback here is that the user has no way of exiting and returning to the main menu, if he/she would like to abort the operation.
 

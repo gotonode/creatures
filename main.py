@@ -1,4 +1,4 @@
-import sys  # Needed to gracefully quit the Python app.
+import sys  # Needed to gracefully quit the Python app via "sys.exit".
 
 __APP_NAME__ = "Pokémon Database"
 __DEFAULT_DATABASE_FILE__ = "database.txt"
@@ -54,13 +54,13 @@ def add_creature():
 
     creatures.append(creature)  # Append the new creature to the list of all creatures.
 
-    print("Pokémon has been created and added to the in-memory database.")
-    print("Please remember to save your changes.")
-    print()
+    print("Pokémon has been created and added to the in-memory database. Please remember to save your changes.\n")
 
 def ask_if_caught():
 # Asks the user if he/she has caught the Pokémon, and returns either a 'Y' or a 'N'.
-# Used when creating a new Pokémon entry and when editing an existing Pokémon.
+#
+# Used when creating a new Pokémon entry and when editing an existing Pokémon,
+# that is why this function exists (to avoid DRY).
 
     while True:
         caught = input("Have you caught this Pokémon [Y/N]? ").strip().upper()
@@ -77,9 +77,9 @@ def find_creature():
     prompt = input("Please enter the Pokémon's name or ID: ").strip()
     creature = None
     try:
-        id = int(prompt)
+        creature_id = int(prompt)
         # This worked, so it is an integer (i.e., an ID).
-        creature = find_creature_by_id(id)
+        creature = find_creature_by_id(creature_id)
     except ValueError:
         # This did not work, so it must be the Pokémon's name.
         name = prompt
@@ -94,14 +94,12 @@ def edit_creature():
     creature = find_creature()
 
     if not creature:
-        print("Could not find a Pokémon by that name or ID, so can't make changes to it.")
-        print()
+        print("Could not find a Pokémon by that name or ID, so can't make changes to it.\n")
         return
 
     creature["caught"] = ask_if_caught()  # Returns either a 'Y' or a 'N'.
 
-    print("Pokémon has been updated.")
-    print()
+    print("Pokémon has been updated.\n")
 
 
 def remove_creature():
@@ -110,22 +108,19 @@ def remove_creature():
     creature = find_creature()
 
     if not creature:
-        print("Could not find a Pokémon by that name or ID, so can't remove it.")
-        print()
+        print("Could not find a Pokémon by that name or ID, so can't remove it.\n")
         return
 
     creatures.remove(creature)
 
-    print("Pokémon removed.")
-    print()
+    print("Pokémon removed.\n")
 
 
 def list_creatures():
 # Lists all the Pokémon in the database.
 
     if not creatures:
-        print("No Pokémon in the database. Perhaps you'd like to load a database or add a new Pokémon?")
-        print()
+        print("No Pokémon in the database. Perhaps you'd like to load a database or add a new Pokémon?\n")
         return
 
     print("Would you like your Pokémon sorted by their ID (1), name (2), primary type (3) or secondary type (4)?")
@@ -173,7 +168,7 @@ def list_creatures():
 
         print(creature["id"] + ". " + creature["name"] + " (" + type_string + ")" + caught)
 
-    print()
+    print()  # A blank line is added here for readability.
 
 
 def find_creature_by_name(name):
@@ -245,8 +240,7 @@ def save_database():
 
     file.close()
 
-    print("Database written successfully to '" + file_name + "'.")
-    print()
+    print("Database written successfully to '" + file_name + "'.\n")
 
 
 def load_database():
@@ -278,15 +272,13 @@ def load_database():
 
     file.close()
 
-    print("Database loaded successfully.")
-    print()
+    print("Database loaded successfully. " + str(len(creatures)) + " Pokémon are now in memory.\n")
 
 
 def exit_app():
 # This quits the app.
 
-    print("Thanks for browsing the " + __APP_NAME__ + ". App terminated.")
-    print()
+    print("Thanks for browsing the " + __APP_NAME__ + ". App terminated.\n")
     sys.exit()
 
 
@@ -320,13 +312,11 @@ def loop_program():
         print()
         exit_app()
     else:  # No valid command was entered.
-        print("Unknown command. Type 'X' to see the list of available commands.")
-        print()
+        print("Unknown command. Type 'X' to see the list of available commands.\n")
 
 # Here the app starts, after it has been defined in whole.
 
-print("Welcome to the " + __APP_NAME__ + "!")
-print()
+print("Welcome to the " + __APP_NAME__ + "!\n")
 print_instructions()
 
 while True:
