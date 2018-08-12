@@ -242,7 +242,7 @@ def save_database():
         # Sample data:
         # 1|Bulbasaur|Grass|Poison|N
         # 6|Charizard|Fire|Flying|N
-        # 25|Pikachu|Eletric||Y
+        # 25|Pikachu|Electric||Y
         #
         # Each row contains exactly four (4) pipe characters, even if the space between them contains nothing.
 

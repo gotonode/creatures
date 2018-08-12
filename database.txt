@@ -1,3 +1,3 @@
 1|Bulbasaur|Grass|Poison|N
 6|Charizard|Fire|Flying|N
-25|Pikachu|Eletric||Y
+25|Pikachu|Electric||Y

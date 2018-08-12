@@ -4,9 +4,9 @@ This is the accompanied documentation for the Pokémon Database Python app.
 
 ## Case & functionality
 
-When the app is launched, it presents the user with all available commands. The user chooses a command by typing it in and pressing [RETURN]. The commands are single-character, such as 1 or A. For letters, it doesn't matter if the user types it in lowercase or uppercase, the app changes them all to uppercase.
+When the app is launched, it presents the user with all available commands. The user chooses a command by typing it in and pressing [RETURN]. The commands are single-character, such as '1' or 'A'. For letters, it doesn't matter if the user types it in lowercase or uppercase, the app changes them all to uppercase.
 
-The user can now choose to add a Pokémon, "Pikachu". Choosing option 'A' to add it, the system asks for the new Pokémon's information. First, the user enters its ID (in this case, 25) and the system verifies that it is a positive integer. After that, the Pokémon's name is given ("Pikachu"), then its main type ("eletric") and a secondary type (this is optional). Finally, the user indicates via a 'Y' or 'N' if he/she has caught that Pokémon (in whatever game this app is used for, be it Pokémon Red/Blue for the GameBoy or Pokémon GO for Android, as an example). This user has not yet caught Pikachu.
+The user can now choose to add a Pokémon, "Pikachu". Choosing option 'A' to add it, the system asks for the new Pokémon's information. First, the user enters its ID and the system verifies that it is a positive integer. After that, the Pokémon's name is given ("Pikachu"), then its main type ("Electric") and a secondary type (this is optional). Finally, the user indicates via a 'Y' or 'N' if he/she has caught that Pokémon (in whatever game this app is used for, be it Pokémon Red/Blue for the GameBoy or Pokémon GO for Android, as an example). This user has not yet caught "Pikachu".
 
 To view a list of all the Pokémon in the database, the user can choose from four different ordering options. An existing Pokémon can also be removed. And once a Pokémon has been caught, or returned to the wild, it's caught-status can be changed via the 'E' command. A Pokémon who is to be removed/edited must be indicated by either its ID or name. It doesn't matter if the search term is all in lowercase; this app will find the Pokémon nonetheless.
 
@@ -30,7 +30,7 @@ The data is split with the pipe character ('|') in the text file. Here are a few
 
 - `1|Bulbasaur|Grass|Poison|N`
 - `6|Charizard|Fire|Flying|N`
-- `25|Pikachu|Eletric||Y`
+- `25|Pikachu|Electric||Y`
 
 The empty space between the last two pipe characters is the place where the Pokémon's secondary type would be placed. But in the case of its absence, the number of pipes is still the same. So every row consists of exactly four (4) of these pipe characters.
 
