@@ -21,7 +21,7 @@ def add_creature():
     while True:
         creature_id = input("ID: ").strip()  # Shouldn't use "id" in Python, thus this longer name.
 
-        # This checks that the given value is an integer.
+        # This checks that the given value is a positive integer.
         try:
             id_for_check = int(creature_id)
             if id_for_check <= 0:
@@ -74,6 +74,7 @@ def ask_if_caught():
             break
         else:
             print("Please either enter 'Y' for yes or 'N' for no.")
+
     return caught
 
 
@@ -132,7 +133,7 @@ def list_creatures():
     print("Would you like your Pokémon sorted by their ID (1), name (2), primary type (3) or secondary type (4)?")
 
     while True:
-        choice = input("Please enter your choice (an integer): ")
+        choice = input("Please enter your choice: ")
         try:
             choice = int(choice)
             if choice < 1 or choice > 4:
@@ -145,6 +146,8 @@ def list_creatures():
 
     new_list = []  # This is the new, sorted list.
 
+    sort_string = "ID"
+
     if choice == 1:
         # We sort by ID (an integer).
         new_list = sorted(creatures, key = lambda k: int(k["id"]), reverse=False)
@@ -152,14 +155,17 @@ def list_creatures():
         # We sort by a string (not an integer).
         if choice == 2:
             sort_by = "name"
+            sort_string = sort_by
         elif choice == 3:
             sort_by = "type1"
+            sort_string = "primary type"
         else:
             sort_by = "type2"
+            sort_string = "secondary type"
 
         new_list = sorted(creatures, key = lambda k: k[sort_by], reverse=False)
 
-    print("Here are your Pokémon: ")
+    print("Here are your Pokémon, sorted by " + sort_string + ": ")
 
     for creature in new_list:
         type_string = creature["type1"]
@@ -183,7 +189,7 @@ def find_creature_by_name(name):
     for creature in creatures:
         if creature["name"].lower() == name.lower():
             return creature
-    return None
+    return None  # Strictly not required.
 
 
 def find_creature_by_id(creature_id):
@@ -227,13 +233,11 @@ def save_database():
         return
 
     for creature in creatures:
-        # Ineffective for large amounts of data, but pretty to look at.
-        entry = creature["id"] + "|"
-        entry = entry + creature["name"] + "|"
-        entry = entry + creature["type1"] + "|"
-        entry = entry + creature["type2"] + "|"
-        entry = entry + creature["caught"]
-        entry = entry + "\n"
+        entry = (creature["id"] + "|"
+        + creature["name"] + "|"
+        + creature["type1"] + "|"
+        + creature["type2"] + "|"
+        + creature["caught"] + "\n")  # Create the entries/rows.
 
         # Sample data:
         # 1|Bulbasaur|Grass|Poison|N
@@ -242,7 +246,7 @@ def save_database():
         #
         # Each row contains exactly four (4) pipe characters, even if the space between them contains nothing.
 
-        file.write(entry)
+        file.write(entry)  # Write the row.
 
     file.close()
 
@@ -284,7 +288,7 @@ def load_database():
 def exit_app():
 # This quits the app.
 
-    print("Thanks for browsing the " + __APP_NAME__ + ". App terminated.\n")
+    print("Thanks for using the " + __APP_NAME__ + ". App terminated.\n")
     sys.exit()
 
 
