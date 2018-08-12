@@ -1,3 +1,9 @@
+
+# Pokémon Database
+#
+# This project can be found on GitHub. Please see the following URI:
+# https://github.com/gotonode/creatures
+
 import sys  # Needed to gracefully quit the Python app via "sys.exit".
 
 __APP_NAME__ = "Pokémon Database"
