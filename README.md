@@ -8,7 +8,7 @@ When the app is launched, it presents the user with all available commands. The 
 
 The user can now choose to add a Pokémon, "Pikachu". Choosing option 'A' to add it, the system asks for the new Pokémon's information. First, the user enters its ID and the system verifies that it is a positive integer. After that, the Pokémon's name is given ("Pikachu"), then its main type ("Electric") and a secondary type (this is optional). Finally, the user indicates via a 'Y' or 'N' if he/she has caught that Pokémon (in whatever game this app is used for, be it Pokémon Red/Blue for the GameBoy or Pokémon GO for Android, as an example). This user has not yet caught "Pikachu".
 
-To view a list of all the Pokémon in the database, the user can choose from four different ordering options. An existing Pokémon can also be removed. And once a Pokémon has been caught, or returned to the wild, it's caught-status can be changed via the 'E' command. A Pokémon who is to be removed/edited must be indicated by either its ID or name. It doesn't matter if the search term is all in lowercase; this app will find the Pokémon nonetheless.
+To view a list of all the Pokémon in the database, the user can choose from four different ordering options. An existing Pokémon can also be removed. And once a Pokémon has been caught, or returned to the wild, it's data can be changed via the 'E' command. A Pokémon who is to be removed/edited must be indicated by either its ID or name. It doesn't matter if the search term is all in lowercase; this app will find the Pokémon nonetheless.
 
 Once Pokémon have been added/removed/edited, they can be saved via the '1' command. The user can define the path and filename of the database to be used. When restoring data, command '2' is used and again, the path and filename can be specified. In both of these cases, if nothing is defined, the default value of "database.txt" is used.
 
@@ -20,10 +20,10 @@ Pokémon Database uses a simple text file as its database. A file of any extensi
 
 Each row in the plaintext database file is an entry on its own. An entry is a specific Pokémon, and contains the following information:
 
-- Pokémon's ID, an integer (this should be unique)
-- Pokémon's name (also unique)
-- Main type (mandatory)
-- Secondary type (this can be blank)
+- Pokémon's ID, an integer
+- Pokémon's name
+- Main type
+- Secondary type (only this field may be blank)
 - Information whether the user has caught this Pokémon (either a 'Y' or a 'N')
 
 The data is split with the pipe character ('|') in the text file. Here are a few example rows (entries):
@@ -36,7 +36,7 @@ The empty space between the last two pipe characters is the place where the Pok�
 
 A sample database can be found here: [database.txt](https://github.com/gotonode/creatures/blob/master/database.txt)
 
-The user can add a Pokémon, view a list of all the Pokémon in the database (with different sorting options), edit the caught-status of the Pokémon, and remove a Pokémon. The database can also be saved and loaded. A custom file can be defined as the source/target for the database.
+The user can add a Pokémon, view a list of all the Pokémon in the database (with different sorting options), edit a Pokémon, and remove a Pokémon. The database can also be saved and loaded. A custom file can be defined as the source/target for the database.
 
 I chose to use Python's dictionary-based approach because that was new to me. Immediately I wanted to make it more object-based, in that I would've created a new object called Pokémon and then create, store, edit and delete these objects in a list. But this was a good learning experience, and really showed why Python is used in so many science/tech fields.
 
@@ -49,9 +49,11 @@ Many functions were created to avoid repetition ("DRY"). In Python, a function i
 Here's a list of all the functions and their uses in this app:
 
 - "`add_creature`" creates a new Pokémon and adds it to the list
+- "`ask_for_string`" asks the user for a string value with the given parameters, and returns that string
+- "`ask_for_id`" asks the user for his/her Pokémon's ID
 - "`ask_if_caught`" is used when creating a new Pokémon and when editing an existing one
 - "`find_creature`" finds a Pokémon by its ID (integer) or name (string)
-- "`edit_creature`" changes the caught-status of the Pokémon
+- "`edit_creature`" asks for and makes changes to a selected Pokémon
 - "`remove_creature`" removes a single Pokémon, based on its ID or name
 - "`list_creatures`" lists all the Pokémon in the database in one of four different ways
 - "`find_creature_by_name`" is a helper function which does what the name suggests, returns None otherwise
@@ -61,6 +63,12 @@ Here's a list of all the functions and their uses in this app:
 - "`load_database`" clears the memory and loads Pokémon from a database file
 - "`exit_app`" is used to exit the app
 - "`loop_program`" loops the program indefinitely, until asked to exit
+
+Three redirect functions are also defined (they all redirect to "`ask_for_string`"):
+
+- "`ask_for_name`" asks for the Pokémon's name
+- "`ask_for_primary_type`" asks for the Pokémon's primary type
+- "`ask_for_secondary_type`" asks for the Pokémon's secondary type (this can be empty)
 
 ## Technical
 
@@ -82,5 +90,7 @@ If the Pokémon's name or type (primary/secondary) contains the pipe character (
 When opening a database (file), the app empties the list of existing Pokémon. For production use, a check should be performed if the user wants to load a new database when existing, modified data would be destroyed.
 
 When changes have been made, and the app is asked to close, it should ask the user if he/she wants to save the changes made to the data prior to closing down.
+
+Pokémon's types (primary and secondary) really should be normalized (database design), but the scope of this project doesn't allow/require that.
 
 Upon adding new Pokémon to the system, checks should be made if an ID/name already exists in the database. Should we allow more than one Pokémon of the same ID and/or name to be added?

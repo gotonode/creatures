@@ -11,6 +11,22 @@ def add_creature():
 
     creature = {}
 
+    # The "ask" functions exist because this code is also used when editing a Pokémon's data.
+
+    creature["id"] = ask_for_id()
+    creature["name"] = ask_for_name()
+    creature["type1"] = ask_for_primary_type()
+    creature["type2"] = ask_for_secondary_type()
+    creature["caught"] = ask_if_caught()
+
+    creatures.append(creature)  # Append the new creature to the list of all creatures.
+
+    print("Pokémon has been created and added to the in-memory database. Please remember to save your changes.\n")
+
+
+def ask_for_id():
+# Asks the user for a Pokémon's ID, and only accepts positive integers (> 0).
+
     while True:
         creature_id = input("ID: ").strip()  # Shouldn't use "id" in Python, thus this longer name.
 
@@ -24,36 +40,48 @@ def add_creature():
         except ValueError:
             print("Please enter an integer.")
 
-    creature["id"] = creature_id
+    return creature_id
+
+
+def ask_for_string(name, fail_message, can_be_null=False):
+# Asks the user for a string with the given name and fail message values, and returns that non-null (None) string.
+# If the additional "can_be_null" argument is set to something else besides the default of False, this
+# function skips the check for the input data (that it exists).
 
     while True:
-        name = input("Name: ").strip()
+        data = input(name + ": ").strip()
 
-        if not name:
-            print("Please enter a name for the Pokémon.")
+        if can_be_null:
+            # The data can be empty, so we won't do the check. Any value will do here.
+            break
+
+        if not data:
+            print(fail_message)
         else:
             break
 
-    creature["name"] = name
+    return data
 
-    while True:
-        type1 = input("Main type: ").strip()
 
-        if not type1:
-            print("Please enter a main (primary) type for the Pokémon.")
-        else:
-            break
+def ask_for_name():
+# A function that redirects to the "ask_for_string" -function, for the purpose of asking a Pokémon's name.
 
-    creature["type1"] = type1
+    return ask_for_string("Name", "Please enter a name for your Pokémon.")
 
-    type2 = input("Secondary type (leave blank for none): ").strip()
-    creature["type2"] = type2
 
-    creature["caught"] = ask_if_caught()  # Asks for either a 'Y' or a 'N' and returns that.
+def ask_for_primary_type():
+# A function that redirects to the "ask_for_string" -function, for the purpose of asking a Pokémon's primary type.
 
-    creatures.append(creature)  # Append the new creature to the list of all creatures.
+    return ask_for_string("Main type", "Please enter a main (primary) type for the Pokémon.")
 
-    print("Pokémon has been created and added to the in-memory database. Please remember to save your changes.\n")
+
+def ask_for_secondary_type():
+# A function that redirects to the "ask_for_string" -function, for the purpose of asking a Pokémon's secondary type.
+# The secondary type can be null (None), so the additional True parameter is passed. The second parameter is
+# not used in this case, so it is passed as None.
+
+    return ask_for_string("Secondary type (leave blank for none)", None, True)
+
 
 def ask_if_caught():
 # Asks the user if he/she has caught the Pokémon, and returns either a 'Y' or a 'N'.
@@ -89,7 +117,7 @@ def find_creature():
 
 
 def edit_creature():
-# Edit's a Pokémon's caught-status, if that Pokémon is found.
+# Edit's an existing Pokémon.
 
     creature = find_creature()
 
@@ -97,7 +125,13 @@ def edit_creature():
         print("Could not find a Pokémon by that name or ID, so can't make changes to it.\n")
         return
 
-    creature["caught"] = ask_if_caught()  # Returns either a 'Y' or a 'N'.
+    print("Editing:", creature)  # Display the current values of the Pokémon to the user.
+
+    creature["id"] = ask_for_id()
+    creature["name"] = ask_for_name()
+    creature["type1"] = ask_for_primary_type()
+    creature["type2"] = ask_for_secondary_type()
+    creature["caught"] = ask_if_caught()
 
     print("Pokémon has been updated.\n")
 
@@ -233,6 +267,7 @@ def save_database():
         + creature["caught"] + "\n")  # Create the entries/rows.
 
         # Sample data:
+        #
         # 1|Bulbasaur|Grass|Poison|N
         # 6|Charizard|Fire|Flying|N
         # 25|Pikachu|Electric||Y
@@ -263,15 +298,16 @@ def load_database():
     creatures.clear()  # We empty the existing data.
 
     for row in file:
-        data = row.split("|")  # Split based on the pipe ('|') character.
-        creature = {}
-        creature["id"] = data[0]
-        creature["name"] = data[1]
-        creature["type1"] = data[2]
-        creature["type2"] = data[3]
-        creature["caught"] = data[4]
+        if row:  # Only for rows that actually contain data.
+            data = row.split("|")  # Split based on the pipe ('|') character.
+            creature = {}
+            creature["id"] = data[0]
+            creature["name"] = data[1]
+            creature["type1"] = data[2]
+            creature["type2"] = data[3]
+            creature["caught"] = data[4].strip()  # This takes away the linefeed ("\n").
 
-        creatures.append(creature)
+            creatures.append(creature)
 
     file.close()
 
@@ -315,6 +351,7 @@ def loop_program():
         print()
         exit_app()
     else:  # No valid command was entered.
+        print()
         print("Unknown command. Type 'X' to see the list of available commands.\n")
 
 # Here the app starts, after it has been defined in whole.
