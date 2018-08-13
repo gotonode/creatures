@@ -9,6 +9,8 @@ creatures = []  # We store all the Pokémon here.
 def add_creature():
 # Creates a new Pokémon based on user-given data, and adds it to the list.
 
+    print("Adding a new Pokémon")
+
     creature = {}
 
     # The "ask" functions exist because this code is also used when editing a Pokémon's data.
@@ -44,7 +46,7 @@ def ask_for_id():
 
 
 def ask_for_string(name, fail_message, can_be_null=False):
-# Asks the user for a string with the given name and fail message values, and returns that non-null (None) string.
+# Asks the user for a string with the given name and fail message values, and returns that non-null string.
 # If the additional "can_be_null" argument is set to something else besides the default of False, this
 # function skips the check for the input data (that it exists).
 
@@ -119,13 +121,15 @@ def find_creature():
 def edit_creature():
 # Edit's an existing Pokémon.
 
+    print("Editing a Pokémon")
+
     creature = find_creature()
 
     if not creature:
         print("Could not find a Pokémon by that name or ID, so can't make changes to it.\n")
         return
 
-    print("Editing:", creature)  # Display the current values of the Pokémon to the user.
+    print("Current values:", creature)  # Display the current values of the Pokémon to the user.
 
     creature["id"] = ask_for_id()
     creature["name"] = ask_for_name()
@@ -138,6 +142,8 @@ def edit_creature():
 
 def remove_creature():
 # Removes a Pokémon from the database, if found.
+
+    print("Removing a Pokémon")
 
     creature = find_creature()
 
@@ -152,6 +158,8 @@ def remove_creature():
 
 def list_creatures():
 # Lists all the Pokémon in the database.
+
+    print("Listing Pokémon")
 
     if not creatures:
         print("No Pokémon in the database. Perhaps you'd like to load a database or add a new Pokémon?\n")
@@ -225,24 +233,40 @@ def find_creature_by_id(creature_id):
     for creature in creatures:
         if int(creature["id"]) == creature_id:
             return creature
-    return None
+    return None  # Strictly not required.
 
 
-def print_instructions():
-# These instructions are printed when the app is first run, and subsequently only when requested.
+def load_database():
+# After the user has given the database file name, we'll loop through all rows and create new Pokémon based on them.
 
-    print("Please choose a command")
-    print()  # To me, these are more readable than using "\n". Case-dependent, of course.
-    print("A: Add a new Pokémon")
-    print("R: Remove an existing Pokémon")
-    print("E: Edit an existing Pokémon")
-    print("L: List all Pokémon (list order will be asked)")
-    print()
-    print("1: Load the database from an existing file (clears the memory)")
-    print("2: Save the database to a file")
-    print()
-    print("3: Quit the app")
-    print()
+    file_name = input("Which database to load (default '" + __DEFAULT_DATABASE_FILE__ + "'): ").strip()
+
+    if not file_name:
+        file_name = __DEFAULT_DATABASE_FILE__
+
+    try:
+        file = open(file_name, "rt")  # Read, text.
+    except IOError:
+        print("Couldn't open that database.")
+        return
+
+    creatures.clear()  # We empty the existing data.
+
+    for row in file:
+        if row:  # Only for rows that actually contain data.
+            data = row.split("|")  # Split based on the pipe ('|') character.
+            creature = {}
+            creature["id"] = data[0]
+            creature["name"] = data[1]
+            creature["type1"] = data[2]
+            creature["type2"] = data[3]
+            creature["caught"] = data[4].strip()  # This takes away the linefeed ("\n").
+
+            creatures.append(creature)
+
+    file.close()
+
+    print("Database loaded successfully. " + str(len(creatures)) + " Pokémon are now in memory.\n")
 
 
 def save_database():
@@ -281,44 +305,28 @@ def save_database():
     print("Database written successfully to '" + file_name + "'.\n")
 
 
-def load_database():
-# After the user has given the database file name, we'll loop through all rows and create new Pokémon based on them.
-
-    file_name = input("Which database to load (default '" + __DEFAULT_DATABASE_FILE__ + "'): ").strip()
-
-    if not file_name:
-        file_name = __DEFAULT_DATABASE_FILE__
-
-    try:
-        file = open(file_name, "rt")  # Read, text.
-    except IOError:
-        print("Couldn't open that database.")
-        return
-
-    creatures.clear()  # We empty the existing data.
-
-    for row in file:
-        if row:  # Only for rows that actually contain data.
-            data = row.split("|")  # Split based on the pipe ('|') character.
-            creature = {}
-            creature["id"] = data[0]
-            creature["name"] = data[1]
-            creature["type1"] = data[2]
-            creature["type2"] = data[3]
-            creature["caught"] = data[4].strip()  # This takes away the linefeed ("\n").
-
-            creatures.append(creature)
-
-    file.close()
-
-    print("Database loaded successfully. " + str(len(creatures)) + " Pokémon are now in memory.\n")
-
-
 def exit_app():
 # This quits the app.
 
     print("Thanks for using the " + __APP_NAME__ + ". App terminated.\n")
     sys.exit()
+
+
+def print_instructions():
+# These instructions are printed when the app is first run, and subsequently only when requested.
+
+    print("Please choose a command")
+    print()  # To me, these are more readable than using "\n". Case-dependent, of course.
+    print("A: Add a new Pokémon")
+    print("R: Remove an existing Pokémon")
+    print("E: Edit an existing Pokémon")
+    print("L: List all Pokémon (list order will be asked)")
+    print()
+    print("1: Load the database from an existing file (clears the memory)")
+    print("2: Save the database to a file")
+    print()
+    print("3: Quit the app")
+    print()
 
 
 def loop_program():
