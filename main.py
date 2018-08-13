@@ -1,15 +1,8 @@
-
-# Pokémon Database
-#
-# This project can be found on GitHub. Please see the following URI:
-# https://github.com/gotonode/creatures
-
 import sys  # Needed to gracefully quit the Python app via "sys.exit".
 
 __APP_NAME__ = "Pokémon Database"
 __DEFAULT_DATABASE_FILE__ = "database.txt"
 
-# We call these "creatures" because Python doesn't like the 'é' in Pokémon.
 creatures = []  # We store all the Pokémon here.
 
 
