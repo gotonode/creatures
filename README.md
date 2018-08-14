@@ -38,13 +38,9 @@ A sample database can be found here: [database.txt](https://github.com/gotonode/
 
 The user can add a Pokémon, view a list of all the Pokémon in the database (with different sorting options), edit a Pokémon, and remove a Pokémon. The database can also be saved and loaded. A custom file can be defined as the source/target for the database.
 
-I chose to use Python's dictionary-based approach because that was new to me. Immediately I wanted to make it more object-based, in that I would've created a new object called Pokémon and then create, store, edit and delete these objects in a list. But this was a good learning experience, and really showed why Python is used in so many science/tech fields.
-
-The double empty spaces before each function ("def") is a Python convention. Same goes for double spaces before the hash symbol ('#') on single-line comments after code. Comments which are on their own line do not begin with any spaces before them.
-
 ## Functions (methods)
 
-Many functions were created to avoid repetition ("DRY"). In Python, a function is defined with the "def" keyword. Each function has been commented, and named appropriately. Please refer to the code for more information.
+Many functions were created to avoid repetition (DRY). In Python, a function is defined with the "def" keyword. Each function has been commented, and named appropriately. Please refer to the code for more information.
 
 Here's a list of all the functions and their uses in this app:
 
@@ -81,6 +77,10 @@ When the user wishes to view a list of his/her Pokémon, four sorting choices ar
 3. Sort by primary type
 4. Sort by secondary type
 
+I chose to use Python's dictionary-based approach because that was new to me. Immediately I wanted to make it more object-based, in that I would've created a new object called Pokémon and then create, store, edit and delete these objects in a list. But this was a good learning experience, and really showed why Python is used in so many science/tech fields.
+
+The double empty spaces before each function ("def") is a Python convention. Same goes for double spaces before the hash symbol ('#') on single-line comments after code. Comments which are on their own line do not begin with any spaces before them.
+
 ## Flaws in the system
 
 A few flaws have been identified. These could also be called shortcomings.
@@ -92,5 +92,3 @@ When opening a database (file), the app empties the list of existing Pokémon. F
 When changes have been made, and the app is asked to close, it should ask the user if he/she wants to save the changes made to the data prior to closing down.
 
 Pokémon's types (primary and secondary) really should be normalized (database design), but the scope of this project doesn't allow/require that.
-
-Upon adding new Pokémon to the system, checks should be made if an ID/name already exists in the database. Should we allow more than one Pokémon of the same ID and/or name to be added?

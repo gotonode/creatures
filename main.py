@@ -224,7 +224,7 @@ def find_creature_by_name(name):
     for creature in creatures:
         if creature["name"].lower() == name.lower():
             return creature
-    return None  # Strictly not required.
+    return None  # Strictly not required, here for clarity.
 
 
 def find_creature_by_id(creature_id):
@@ -233,7 +233,7 @@ def find_creature_by_id(creature_id):
     for creature in creatures:
         if int(creature["id"]) == creature_id:
             return creature
-    return None  # Strictly not required.
+    return None  # Strictly not required, here for clarity.
 
 
 def load_database():
