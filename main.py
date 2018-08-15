@@ -119,7 +119,7 @@ def find_creature():
 
 
 def edit_creature():
-# Edit's an existing Pokémon.
+# Edit's an existing Pokémon. The Pokémon's caught-status is changed elsewhere.
 
     print("Editing a Pokémon")
 
@@ -129,13 +129,15 @@ def edit_creature():
         print("Could not find a Pokémon by that name or ID, so can't make changes to it.\n")
         return
 
-    print("Current values:", creature)  # Display the current values of the Pokémon to the user.
+    print("Current values: ID=" + creature["id"]
+    + ", name=" + creature["name"]
+    + ", type1=" + creature["type1"]
+    + ", type2=" + creature["type2"])  # Display the current values of the Pokémon to the user.
 
     creature["id"] = ask_for_id()
     creature["name"] = ask_for_name()
     creature["type1"] = ask_for_primary_type()
     creature["type2"] = ask_for_secondary_type()
-    creature["caught"] = ask_if_caught()
 
     print("Pokémon has been updated.\n")
 
@@ -154,6 +156,20 @@ def remove_creature():
     creatures.remove(creature)
 
     print("Pokémon removed.\n")
+
+
+def change_caught_status():
+# Prompts for a Pokémon's caught-status, and updates it.
+
+    creature = find_creature()
+
+    if not creature:
+        print("Could not find a Pokémon by that name or ID, so can't change its caught-status.\n")
+        return
+
+    creature["caught"] = ask_if_caught()
+
+    print("The Pokémon's caught-status has been updated.\n")
 
 
 def list_creatures():
@@ -321,6 +337,7 @@ def print_instructions():
     print("R: Remove an existing Pokémon")
     print("E: Edit an existing Pokémon")
     print("L: List all Pokémon (list order will be asked)")
+    print("C: Change Pokémon's caught-status")
     print()
     print("1: Load the database from an existing file (clears the memory)")
     print("2: Save the database to a file")
@@ -340,9 +357,12 @@ def loop_program():
     elif command == "L":  # List all the Pokémon.
         print()
         list_creatures()
-    elif command == "E":  # Edit a Pokémon's caught-status.
+    elif command == "E":  # Edit Pokémon's data.
         print()
         edit_creature()
+    elif command == "C":  # Change a Pokémon's caught-status.
+        print()
+        change_caught_status()
     elif command == "A":  # Add a new Pokémon.
         print()
         add_creature()
