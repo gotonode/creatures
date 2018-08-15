@@ -335,9 +335,11 @@ def print_instructions():
     print()  # To me, these are more readable than using "\n". Case-dependent, of course.
     print("A: Add a new Pokémon")
     print("R: Remove an existing Pokémon")
+    print()
     print("E: Edit an existing Pokémon")
-    print("L: List all Pokémon (list order will be asked)")
     print("C: Change Pokémon's caught-status")
+    print()
+    print("L: List all Pokémon (list order will be asked)")
     print()
     print("1: Load the database from an existing file (clears the memory)")
     print("2: Save the database to a file")
