@@ -45,13 +45,13 @@ def ask_for_id():
     return creature_id
 
 
-def ask_for_string(name, fail_message, can_be_null=False):
-# Asks the user for a string with the given name and fail message values, and returns that non-null string.
+def ask_for_string(prompt, fail_message, can_be_null=False):
+# Asks the user for a string with the given prompt and fail message values, and returns that string.
 # If the additional "can_be_null" argument is set to something else besides the default of False, this
 # function skips the check for the input data (that it exists).
 
     while True:
-        data = input(name + ": ").strip()
+        data = input(prompt + ": ").strip()
 
         if can_be_null:
             # The data can be empty, so we won't do the check. Any value will do here.
@@ -263,7 +263,7 @@ def load_database():
     try:
         file = open(file_name, "rt")  # Read, text.
     except IOError:
-        print("Couldn't open that database.")
+        print("Couldn't open that database.\n")
         return
 
     creatures.clear()  # We empty the existing data.
@@ -296,7 +296,7 @@ def save_database():
     try:
         file = open(file_name, "wt")  # Write, text.
     except IOError:
-        print("Couldn't save to that database.")
+        print("Couldn't save to that database.\n")
         return
 
     for creature in creatures:
