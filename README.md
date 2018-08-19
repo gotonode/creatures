@@ -1,5 +1,7 @@
 # Pokémon Database
 
+![Pokémon Database](https://github.com/gotonode/creatures/blob/master/docs/images/app.png)
+
 This is the accompanied documentation for the **Pokémon Database** Python app.
 
 It is written in _GitHub Flavored Markdown_.
