@@ -1,4 +1,5 @@
 # Pokémon Database
+*A Pokémon database made with Python*
 
 ![Pokémon Database](https://github.com/gotonode/creatures/blob/master/docs/images/app.png)
 
