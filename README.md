@@ -38,7 +38,7 @@ The data is split with the pipe character ('|') in the text file. Here are a few
 
 The empty space between the last two pipe characters is the place where the Pokémon's secondary type would be placed. But in the case of its absence, the number of pipes is still the same. So every row consists of exactly four (4) of these pipe characters.
 
-A sample database can be found here: [database.txt](https://github.com/gotonode/creatures/blob/master/database.txt)
+A sample database can be found here: [database.txt](database.txt)
 
 The user can add a Pokémon, view a list of all the Pokémon in the database (with different sorting options), edit a Pokémon, and remove a Pokémon. The database can also be saved and loaded. A custom file can be defined as the source/target for the database.
 
