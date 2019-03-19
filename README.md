@@ -1,5 +1,5 @@
 # Pokémon Database
-*A Pokémon database made with Python*
+*A [Pokémon](https://en.wikipedia.org/wiki/Pok%C3%A9mon) database made with Python*
 
 | Travis CI | CodeFactor |
 | :-------: | :--------: |
