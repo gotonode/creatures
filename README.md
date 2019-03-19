@@ -1,6 +1,10 @@
 # Pokémon Database
 *A Pokémon database made with Python*
 
+| Travis CI | CodeFactor |
+| :-------: | :--------: |
+| [![Build Status](https://travis-ci.org/gotonode/creatures.svg?branch=master)](https://travis-ci.org/gotonode/creatures) | [![CodeFactor](https://www.codefactor.io/repository/github/gotonode/creatures/badge)](https://www.codefactor.io/repository/github/gotonode/creatures) |
+
 ![Pokémon Database](https://github.com/gotonode/creatures/blob/master/docs/images/app.png)
 
 This is the accompanied documentation for the **Pokémon Database** Python app.
